@@ -26,6 +26,13 @@ function App() {
   const [rounds, setRounds] = useState(0);
   const [disable, setDisable] = useState(false);
 
+  const resetCounter = () => {
+    setCardTwo(null);
+    setCardOne(null);
+    setRounds((turn) => turn + 1);
+    setDisable(false);
+  };
+
   const shuffle = () => {
     const shuffleCards = [...cardsArray, ...cardsArray]
       .sort(() => Math.random() - 0.5)
@@ -81,13 +88,6 @@ function App() {
     shuffle();
   }, []);
 
-  const resetCounter = () => {
-    setCardTwo(null);
-    setCardOne(null);
-    setRounds((turn) => turn + 1);
-    setDisable(false);
-  };
-
   return (
     <div className="App">
       <h1>Juego de memoria</h1>
@@ -96,7 +96,7 @@ function App() {
         {' '}
         {rounds}
       </p>
-      <button onClick={shuffle}>New Game</button>
+      <button type="submit" onClick={shuffle}>New Game</button>
 
       <div className="grid">
         {cards.map((card) => (

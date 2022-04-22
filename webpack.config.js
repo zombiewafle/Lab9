@@ -1,69 +1,68 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {CleanWebpackPlugin} = require("clean-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    mode: "development", 
-    entry: "./src/index.js", 
-    output: {
-        filename: "main.bundle.js", 
-        path: path.resolve(__dirname, "bundle")
-    }, 
+  mode: 'development',
+  entry: './src/index.js',
+  output: {
+    filename: 'main.bundle.js',
+    path: path.resolve(__dirname, 'bundle'),
+  },
 
-    plugins:[
-        new CleanWebpackPlugin(), 
-        new MiniCssExtractPlugin({filename: "main.bundle.css"}), 
-        new HtmlWebpackPlugin({
-            template: "./src/index.html", 
-        }), 
-    ], 
+  plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({ filename: 'main.bundle.css' }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+  ],
 
-    module: {
-        rules: 
+  module: {
+    rules:
         [
-            {
-                test: /\.css$/i, 
-                use: 
+          {
+            test: /\.css$/i,
+            use:
                 [
-                    MiniCssExtractPlugin.loader, 
-                    "css-loader", 
-                ], 
-            },
+                  MiniCssExtractPlugin.loader,
+                  'css-loader',
+                ],
+          },
 
-            {
-                test: /\.m?js$/, 
-                exclude: /(node_modules)/, 
-                use: 
+          {
+            test: /\.m?js$/,
+            exclude: /(node_modules)/,
+            use:
                 {
-                    loader: 'babel-loader', 
-                    options: 
+                  loader: 'babel-loader',
+                  options:
                     {
-                        presets: 
+                      presets:
                         [
-                            '@babel/preset-env', 
-                            '@babel/preset-react'
+                          '@babel/preset-env',
+                          '@babel/preset-react',
                         ],
                     },
                 },
-            },
+          },
 
-
-            {
-                test:/\.html$/, 
-                use:
+          {
+            test: /\.html$/,
+            use:
                 [
-                    "html-loader"
-                ], 
-            }, 
+                  'html-loader',
+                ],
+          },
 
-            {
-                test: /\.(png|jpe?g|gif|mp4)$/i,
-                loader: 'file-loader',
-                options: {
-                  outputPath: 'images',
-                },
-              }, 
-        ], 
-    }, 
-}; 
+          {
+            test: /\.(png|jpe?g|gif|mp4)$/i,
+            loader: 'file-loader',
+            options: {
+              outputPath: 'images',
+            },
+          },
+        ],
+  },
+};

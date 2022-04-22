@@ -20,17 +20,32 @@ module.exports = {
   ],
 
   rules: {
+    'jsx-a11y/no-noninteractive-element-interactions': [
+      'error',
+      {
+        handlers: [
+          'onClick',
+          'onMouseDown',
+          'onMouseUp',
+          'onKeyPress',
+          'onKeyDown',
+          'onKeyUp',
+        ],
+      },
+    ],
+    'no-unused-vars': ['error', { vars: 'all', args: 'after-used', ignoreRestSiblings: false }],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/prop-types': 0,
-    'import/prefer-default-export': 'off',
+    'import/prefer-default-export': 0,
     'import/no-default-export': 'error',
     'import/no-unresolved': 0,
     'import/extensions': ['error', 'ignorePackages', {
       ts: 'never',
       tsx: 'never',
-      js: 'never',
-      jsx: 'never',
+      js: 'always',
+      jsx: 'always',
       mjs: 'never',
     }],
+
   },
 };
